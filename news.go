@@ -10,15 +10,14 @@ import (
 )
 
 
-//var url string = "http://www.rediff.com/rss/inrss.xml"
 var url string = "http://news.oneindia.in/rss/news-business-fb.xml"
+
 type entertainment struct{
 
 	Title string `xml:"channel>title"`
 	Description []string `xml:"channel>item>description"`
 
 }
-
 
 
 
@@ -42,9 +41,6 @@ func getNews(feed string) (n *entertainment,err error){
 	
 	//err=xml.Unmarshal(b,&gossip)
 	err = xml.NewDecoder(bytes.NewBuffer(b)).Decode(&gossip)
-	fmt.Println("the answer : %v",gossip)
-	fmt.Println("ERROR :")
-	fmt.Println(err)
 
 	return gossip,err
 }
@@ -61,6 +57,4 @@ func main(){
 	for _,v:=range gossip.Description {
 		fmt.Println("\n",v)
 	}
-
 }
-		
